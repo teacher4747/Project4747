@@ -1,7 +1,8 @@
 #include <iostream> 
 #include <iomanip>
 #include <string>
-
+#include <cstdlib> 
+#include <ctime>   
 
 
 
@@ -14,7 +15,7 @@ int main()
 	double time = 0;
 	std::cin >> time;
 	double speed = (distance / time);
-	std::cout << "Вам нужно ехать со скоростью " << speed << " км в ч."; 
+	std::cout << "Вам нужно ехать со скоростью " << speed << " км в ч.";
 
 	std::cout << "Здравствуйте, введите время начала поездки, например 19:45:32 нижe \n";
 	int hourse = 0;
@@ -106,75 +107,157 @@ int main()
 
 	cout << string(60, '=') << endl;
 */
-	
-	cout << "Здравствуйте, введите целое шестизначное число ниже";
-	int number = 0;
-	cin >> number;
 
-	if (number > 999999 || number < 100000) {
-		cout << "Число должно быть шестизначным";
-		return 1;
-	}
-	int firstpart = number / 1000;
-	int secondpart = number % 1000;
-	int sumFirst = (firstpart / 100) + ((firstpart / 10) % 10) + (firstpart % 10);
-	int sumSecond = (secondpart / 100) + ((secondpart / 10) % 10) + (secondpart % 10);
+/*cout << "Здравствуйте, введите целое шестизначное число ниже";
+int number = 0;
+cin >> number;
 
-	// Проверка на счастливое число  
-	if (sumFirst == sumSecond) {
-		cout << "Число счастливое!" << endl;
-	}
-	else {
-		cout << "Число не является счастливым." << endl;
-	}
-
-	string numberStr;
-
-
-	cout << "Введите четырехзначное число: ";
-	cin >> numberStr;
-
-
-	if (numberStr.length() != 4) {
-		cout << "Ошибка! Введите ровно четыре цифры." << endl;
-		return 1;
-	}
-
-
-	for (char c : numberStr) {
-		if (!isdigit(c)) {
-			cout << "Ошибка! Введены не только цифры." << endl;
-			return 1;
-		}
-	}
-
-
-	cout << "\nИсходное число: " << numberStr << endl;
-
-
-	swap(numberStr[0], numberStr[1]);
-	swap(numberStr[2], numberStr[3]);
-
-
-	cout << "Результат после замены: " << numberStr << endl;
-
-	int max = 0;
-	int number1;
-	cout << "Введите первое число: ";
-	cin >> number1;
-	number1 = max;
-	for (int i = 0; i < 6; i++) {
-		cout << "Введите число: ";
-		cin >> number1;
-		if (number1 > max) {
-			max = number1;
-		}
-		cout << "Максимальное число: " << max << endl;
-	}
-	
-	
-	
-	
-	
-return 0;
+if (number > 999999 || number < 100000) {
+	cout << "Число должно быть шестизначным";
+	return 1;
 }
+int firstpart = number / 1000;
+int secondpart = number % 1000;
+int sumFirst = (firstpart / 100) + ((firstpart / 10) % 10) + (firstpart % 10);
+int sumSecond = (secondpart / 100) + ((secondpart / 10) % 10) + (secondpart % 10);
+
+// Проверка на счастливое число
+if (sumFirst == sumSecond) {
+	cout << "Число счастливое!" << endl;
+}
+else {
+	cout << "Число не является счастливым." << endl;
+}
+
+string numberStr;
+
+
+cout << "Введите четырехзначное число: ";
+cin >> numberStr;
+
+
+if (numberStr.length() != 4) {
+	cout << "Ошибка! Введите ровно четыре цифры." << endl;
+	return 1;
+}
+
+
+for (char c : numberStr) {
+	if (!isdigit(c)) {
+		cout << "Ошибка! Введены не только цифры." << endl;
+		return 1;
+	}
+}
+
+
+cout << "\nИсходное число: " << numberStr << endl;
+
+
+swap(numberStr[0], numberStr[1]);
+swap(numberStr[2], numberStr[3]);
+
+
+cout << "Результат после замены: " << numberStr << endl;
+
+int max = 0;
+int number1;
+cout << "Введите первое число: ";
+cin >> number1;
+number1 = max;
+for (int i = 0; i < 6; i++) {
+	cout << "Введите число: ";
+	cin >> number1;
+	if (number1 > max) {
+		max = number1;
+	}
+	cout << "Максимальное число: " << max << endl;
+}
+*/
+// Задача 1 
+	srand(time(0));
+	int nums[10];
+
+	for (int i = 0; i < 10; i++) {
+		nums[i] = rand() % 100 + 1;
+	}
+	cout << "Все числа массива: ";
+	for (int i = 0; i < 10; i++) {
+		cout << nums[i] << " ";
+	}
+	cout << endl;
+
+	int min = nums[0];
+	int max = nums[0];
+
+	for (int i = 1; i < 10; i++) {
+		if (nums[i] < min) min = nums[i];
+		if (nums[i] > max) max = nums[i];
+
+	}
+
+	cout << "Минимальный элемент " << min << endl;
+	cout << "Максимальный элемент " << max << endl;
+	// Задача 2 
+	int range_min, range_max;
+	cout << "Введите минимальную границу диапазона: ";
+	cin >> range_min;
+	cout << "Введите максимальную границу диапазона: ";
+	cin >> range_max;
+
+	int user_limit;
+	cout << "Введите число-границу: ";
+	cin >> user_limit;
+	int sum = 0;
+	int nums1[10];
+
+	for (int i = 0; i < 10; i++) {
+		nums1[i] = rand() % (range_max - range_min + 1) + range_min;
+	}
+
+	// Выводим массив для наглядности
+	cout << "Сгенерированный массив: ";
+	for (int i = 0; i < 10; i++) {
+		cout << nums[i] << " ";
+	}
+	cout << endl;
+
+	for (int i = 0; i < 10; i++) {
+		if (nums1[i] < user_limit) {
+			sum += nums1[i];
+		}
+	}
+
+	cout << "Сумма элементов меньше " << user_limit << ": " << sum << endl;
+
+
+
+	//Задача  3
+	double year[12];
+	cout << "Здравствуйте, пожалуйста введите вашу прибыль за 12 месяцев ниже \n ";
+	for (int i = 0; i < 12; i++) {
+		cin >> year[i];
+	}
+
+	cout << "Отлично, теперь введите диапазон в котором вы хотите посчитать свою прибыль \n";
+	int zone_start, zone_end; 
+	cout << "Введите начальный месяц диапазона\n";
+	cin >> zone_start; 
+	cout << "Введите конечный месяц диапазона\n";
+	cin >> zone_end;
+	int start_index = zone_start - 1; 
+	int end_index = zone_end - 1; 
+
+	double min_profit = year[start_index];
+	double max_profit = year[start_index];
+
+	for (int i = start_index + 1; i <= end_index; i++) {
+		if (year[i] < min_profit) min_profit = year[i];
+		if (year[i] > max_profit) max_profit = year[i];
+	}
+	cout << "\n--- Результаты анализа ---" << endl;
+	cout << "В диапазоне с " << zone_start << " по " << zone_end << " месяц:" << endl;
+	cout << "Максимальная прибыль: " << max_profit << endl;
+	cout << "Минимальная прибыль: " << min_profit << endl;
+
+return 0;
+} 
